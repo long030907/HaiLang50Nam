@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50 Giải Phóng - Hải Lăng</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #eee;
+      scroll-behavior: smooth;
+      background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+    }
+
+    header img {
+      height: 60px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    header h1 {
+      display: inline-block;
+      font-size: 1.8rem;
+      vertical-align: middle;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    nav button {
+      background-color: #000;
+      color: #eee;
+      border: 2px solid #444;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #444;
+      color: white;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
+    }
+
+    .content-section {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+      background-color: #111;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    .content-section h2 {
+      color: #f44336;
+    }
+
+    iframe {
+      width: 100%;
+      height: 315px;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .home-section {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: #fff;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .home-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .home-section p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .home-section img {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Comment box styles */
+    .comment-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #222;
+      padding: 1rem;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      display: none;
+      z-index: 1000;
+    }
+
+    .comment-box h3 {
+      color: #f44336;
+    }
+
+    .comment-box textarea {
+      width: 100%;
+      height: 100px;
+      padding: 0.5rem;
+      background-color: #333;
+      color: #eee;
+      border: 1px solid #444;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      resize: none;
+    }
+
+    .comment-box button {
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .comment-box button:hover {
+      background-color: #ff5722;
+    }
+
+    /* Comment button styles */
+    .comment-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #f44336;
+      padding: 1rem;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .comment-btn:hover {
+      background-color: #ff5722;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #f44336, 0 0 20px #f44336; }
+      to { text-shadow: 0 0 20px #ff5722, 0 0 30px #ff5722; }
+    }
+  </style>
+</head>
+<body>
+  
+
+  <header>
+    <img src="https://media.loveitopcdn.com/3807/logo-huyen-hai-lang-2.png" alt="Hải Lăng logo">
+    <h1>50 Giải Phóng - Hải Lăng</h1>
+    <nav>
+      <ul>
+        <li><button onclick="showSection('home')"><i class="fas fa-home"></i> Trang chủ</button></li>
+        <li><button onclick="showSection('gioi-thieu')"><i class="fas fa-info-circle"></i> Giới Thiệu</button></li>
+        <li><button onclick="showSection('lich-su')"><i class="fas fa-history"></i> Lịch Sử</button></li>
+        <li><button onclick="showSection('van-hoa')"><i class="fas fa-palette"></i> Văn Hóa</button></li>
+        <li><button onclick="showSection('du-lich')"><i class="fas fa-mountain"></i> Du Lịch</button></li>
+        <li><button onclick="showSection('ky-niem')"><i class="fas fa-star"></i> Kỷ Niệm</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="home-section content-section" style="display: block;">
+      <h2>Miền đất cát Hải Lăng - Nơi của những nhân tài</h2>
+      <p>Hải Lăng - Vùng đất giàu truyền thống cách mạng, đậm đà bản sắc văn hóa và đầy tiềm năng phát triển. Trang web này là nơi giới thiệu tổng thể những nét đặc sắc nhất của huyện nhân dịp kỷ niệm 50 năm thành lập.</p>
+      <img src="https://www.qtmac.vn/uploads/data-figures/2022062014030262b01ba6f0680.thi-tran-hai-lang.jpg" >
+    </section>
+
+    <section id="gioi-thieu" class="content-section">
+      <h2>Giới thiệu về huyện Hải Lăng</h2>
+      <p>Hải Lăng là một huyện ven biển phía Nam tỉnh Quảng Trị, có địa hình đa dạng với đồng bằng, đồi núi và bãi biển. Với truyền thống văn hóa lâu đời, người dân nơi đây hiền hòa, cần cù, chịu khó và giàu lòng yêu nước. Huyện đang phát triển mạnh mẽ về hạ tầng, công nghiệp, nông nghiệp và du lịch sinh thái.</p>
+      <iframe src="https://www.youtube.com/embed/jFAmNbd1Lh0?si=-AeaXTuJm87h1A9U"></iframe>
+    </section>
+
+    <section id="lich-su" class="content-section">
+      <h2>Lịch sử</h2>
+      <p>Huyện Hải Lăng là vùng đất anh hùng, nơi ghi dấu nhiều chiến công hiển hách trong hai cuộc kháng chiến chống Pháp và chống Mỹ. Những năm tháng gian khổ ấy đã hun đúc nên tinh thần bất khuất, kiên cường của con người nơi đây. Từ những địa danh như làng Câu Nhi, Mỹ Chánh, đến các chiến khu từng là vùng đỏ của cách mạng, Hải Lăng đã trở thành biểu tượng sáng ngời của lòng yêu nước và tinh thần đoàn kết dân tộc.</p>
+      <iframe src="https://www.youtube.com/embed/WPuB27NRBxY?si=PocMZcuXFLIRQdWI"></iframe>
+    </section>
+
+    <section id="van-hoa" class="content-section">
+      <h2>Văn hóa</h2>
+      <p>Hải Lăng nổi bật với các giá trị văn hóa đặc sắc, từ kiến trúc đình làng, các lễ hội dân gian đến truyền thống hiếu học và nhân nghĩa. Lễ hội đua thuyền truyền thống diễn ra hàng năm thu hút đông đảo người dân và du khách thập phương. Ngoài ra, lễ hội Cầu Ngư, hội làng cổ cũng là những nét văn hóa tiêu biểu không thể thiếu của người dân Hải Lăng.</p>
+      <div style="text-align: center; margin-top: 16px;"> 
+        <p><em>Hội đua thuyền truyền thống Hải Lăng</em></p>
+      </div>
+      <iframe src="https://www.youtube.com/embed/ZoITq6c4B1o?si=xgrYmt3TishgXfXL"></iframe>
+      <div style="text-align: center; margin-top: 16px;">
+  	<p><em>Lễ hội Cầu ngư Hải Lăng</em></p>
+  	<img src="https://ddk.1cdn.vn/2024/02/08/tram-nam-1.jpg" alt="Lễ hội Cầu ngư Hải Lăng" style="max-width: 100%; height: auto;">
+      </div>
+    </section>
+
+    <section id="du-lich" class="content-section">
+      <h2>Du Lịch</h2>
+      <p>Hải Lăng, với cảnh quan thiên nhiên tuyệt đẹp và nền văn hóa phong phú, là một điểm đến lý tưởng cho du khách yêu thích khám phá và trải nghiệm. Các bãi biển thơ mộng, đồi cát trắng, và những khu di tích lịch sử đặc sắc hứa hẹn sẽ mang lại những chuyến đi đáng nhớ.</p>
+      <p>Nơi đây cũng nổi tiếng với các tour du lịch sinh thái, dã ngoại và các hoạt động ngoài trời như leo núi, cắm trại và tham quan các ngôi làng truyền thống. Các địa điểm nổi bật có thể kể đến như: Bãi biển Hải Lăng, Đồi cát Quảng Trị, và Di tích Cầu Mỹ Chánh.</p>
+      <iframe src="https://www.youtube.com/embed/OyMhFebL8M8?si=KuFkKlt9AGgSk1Za" title="Hải Lăng - Du lịch sinh thái" allowfullscreen></iframe>
+    </section>
+
+    <section id="ky-niem" class="content-section">
+      <h2>Kỷ Niệm 50 Năm</h2>
+      <p>Chào mừng kỷ niệm 50 năm thành lập huyện Hải Lăng, địa phương đã tổ chức nhiều sự kiện, lễ hội và hoạt động văn hóa đặc sắc. Đây là dịp để người dân và du khách cùng ôn lại những kỷ niệm, những dấu ấn lịch sử và sự phát triển mạnh mẽ của huyện trong suốt nửa thế kỷ qua.</p>
+      <p>Chương trình kỷ niệm bao gồm các buổi triển lãm ảnh, những cuộc thi, cùng các hoạt động giao lưu văn hóa giữa các thế hệ. Mỗi hoạt động đều mang đậm giá trị truyền thống và bản sắc địa phương. Đặc biệt, trong dịp này, một lễ hội ánh sáng hoành tráng đã được tổ chức, thu hút hàng ngàn du khách tham gia và chứng kiến khoảnh khắc tuyệt vời này.</p>
+      <iframe src="https://www.youtube.com/embed/j4SDtYpMAVk?si=0MhXkF3AcDSV3-OZ" title="Kỷ niệm 50 năm Hải Lăng" allowfullscreen></iframe>
+    </section>
+  </main>
+
+  <!-- Comment Box -->
+  <div class="comment-box" id="comment-box">
+    <h3>Bình luận của bạn</h3>
+    <textarea placeholder="Viết bình luận..."></textarea>
+    <button onclick="submitComment()">Gửi</button>
+  </div>
+
+  <!-- Comment Button -->
+  <div class="comment-btn" onclick="toggleCommentBox()">
+    <i class="fas fa-comments"></i>
+  </div>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => {
+        section.style.display = 'none';
+      });
+      const target = document.getElementById(id);
+      if (target) target.style.display = 'block';
+    }
+
+    function toggleCommentBox() {
+      const commentBox = document.getElementById('comment-box');
+      commentBox.style.display = commentBox.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function submitComment() {
+      alert("Bình luận đã được gửi!");
+      toggleCommentBox();
+    }
+  </script>
+</body>
+</html>
